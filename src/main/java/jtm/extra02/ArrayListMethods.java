@@ -17,6 +17,7 @@ public class ArrayListMethods {
 	public int sumResult() {
 		int sum = 0;
 		// TODO #2: Count element sum of the list
+
 		return sum;
 	}
 }

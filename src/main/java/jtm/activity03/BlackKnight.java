@@ -9,7 +9,7 @@ package jtm.activity03;
 public class BlackKnight {
 	// Class variables which are shared between all class members (objects)
 	public static short totalKnights; // total number of knights at the start of
-										// the battle
+	// the battle
 	public static short aliveKnights; // total number of alive knights
 	public static short deadKnights; // total number of dead knights
 	public static BlackKnight[] knights; // array of knights in the battle
@@ -22,6 +22,9 @@ public class BlackKnight {
 	public static void setBattle(int initialNumber) {
 		// TODO initialize array of knights with the passed size.
 		// Reset total numbers of total and alive knights to zero
+		knights = new BlackKnight[initialNumber];
+		totalKnights = 0;
+		aliveKnights = 0;
 	}
 
 	public BlackKnight(String name) {
@@ -33,6 +36,14 @@ public class BlackKnight {
 		// 4. increase number of total and alive knights of static counters
 		// HINT: use "this.name" to access name of knight which otherwise is shadowed
 		// by parameter of constructor, which is also called "name"
+		this.name = name;
+		arms = 2;
+		legs = 2;
+		head = 1;
+		alive = true;
+		knights[totalKnights] = this;
+		totalKnights++;
+		aliveKnights++;
 	}
 
 	public String cutOffArm() {
@@ -40,7 +51,13 @@ public class BlackKnight {
 		// If knight is dead, return "Only chicken beats dead!"
 		// If knight has some arms, cut one off and return "Bugger!"
 		// Else return just "Haah!"
-		return "";
+		if (!alive) {
+			return "Only chicken beats dead!";
+		} else if (arms > 0) {
+			arms--;
+			return "Bugger!";
+		} else
+			return "Haah!";
 	}
 
 	public String cutOffLeg() {
@@ -48,7 +65,13 @@ public class BlackKnight {
 		// If knight is dead, return "Only chicken beats dead!"
 		// If knight has some legs, cut one off and return "Bollocks!"
 		// Else return just "Haah!"
-		return "";
+		if (!alive) {
+			return "Only chicken beats dead!";
+		} else if (legs > 0) {
+			legs--;
+			return "Bollocks!";
+		} else
+			return "Haah!";
 	}
 
 	public String cutOffHead() {
@@ -60,7 +83,30 @@ public class BlackKnight {
 		// "You'l newer win! Arthur, Cnut will still fight!"
 		// Where "Arthur, Cnut" are names of still alive knights
 		// Else return "You'l burn in hell forever!"
-		return "";
-	}
+		String text = "You'l burn in hell forever!";
+		if (!alive) {
+			text = "Only chicken beats dead!";
+		} else {
+			aliveKnights--;
+			deadKnights++;
+			alive = false;
+			if (aliveKnights > 0) {
+				StringBuilder temp =new StringBuilder();
 
+				String delim = "";
+				temp.append("You'l newer win! ");
+
+				for (int i = 0; i < knights.length; i++) {
+					if (knights[i].alive) {
+					temp.append(delim).append(knights[i].name);
+					delim = ", ";
+					}
+
+				}
+				temp.append(" will still fight!");
+				text  = temp.toString();
+			}
+		}
+		return text;
+	}
 }
