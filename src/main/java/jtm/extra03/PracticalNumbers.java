@@ -40,12 +40,13 @@ public class PracticalNumbers {
 		for (int i = number - 1; i > 0; i--) {
 			int temp = i;
 			for (int j = divisors.size() - 1; j >= 0; j--) {
-				if (temp > 0)
+				if (temp-divisors.get(j) > 0) {
 					temp -= divisors.get(j);
-				if (temp < 0)
-					temp += divisors.get(j);
-				if (temp == 0)
+				}
+				else if (temp-divisors.get(j) == 0) {
+					temp = 0;
 					break;
+				}
 			}
 			if (temp != 0)
 				return false;
