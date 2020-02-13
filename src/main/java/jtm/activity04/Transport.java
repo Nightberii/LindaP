@@ -38,9 +38,6 @@ public class Transport {
 		return fuelInTank;
 	}
 
-	public void setFuelInTank(float fuelInTank) {
-		this.fuelInTank = fuelInTank;
-	}
 	/*- TODO #3
 	 * Select menu: Source — Generate toString()...
 	 * and implement this method, that t returns String in form:

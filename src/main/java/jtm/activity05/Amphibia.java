@@ -3,29 +3,29 @@ package jtm.activity05;
 import jtm.activity04.Road;
 import jtm.activity04.Transport;
 
-public class Amphibia extends Transport {
+public class Amphibia extends Vehicle {
     private byte sails;
-    private int wheels;
+
 
     public Amphibia(String id, float consumption, int tankSize, byte sails, int wheels) {
-        super(id, consumption, tankSize);
+        super(id, consumption, tankSize, wheels);
         this.sails = sails;
-        this.wheels = wheels;
     }
 
     @Override
     public String move(Road road) {
+
+            String status = "";
         if(road instanceof WaterRoad){
+            WaterRoad waterRoad = (WaterRoad)road;
             return super.getType() + " is sailing on "
-                    + road.toString() + " with " + sails + " sails";
+                    + waterRoad + " with " + sails + " sails";
 
         }
-        else {
-            float necessaryFuel = road.getDistance() * getConsumption()/100;
-            float fuelInTank = getFuelInTank() - necessaryFuel;
-            setFuelInTank(fuelInTank);
-            return super.getType() + " is driving on "
-                    + road.toString() + " with " + wheels + " wheels";
+        if (road instanceof Road) {
+            Road groundRoad = road;
+            return super.move(groundRoad);
         }
+        return status;
     }
 }
