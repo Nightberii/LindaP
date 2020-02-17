@@ -33,7 +33,7 @@ public interface Humanoid {
 	/**
 	 * @return content of the backpack
 	 */
-	public Object getBackpack();
+	public Object getBackpack() throws CloneNotSupportedException;
 
 	/**
 	 * @param item

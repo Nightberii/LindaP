@@ -40,7 +40,7 @@ public interface Alien {
 	 *         type to return.
 	 * 
 	 */
-	public Object getBackpack();
+	public Object getBackpack() throws CloneNotSupportedException;
 
 	/**
 	 * @param item
