@@ -17,15 +17,7 @@ public class PracticalNumbers {
 				practicalNumbers.add(i);
 			}
 		}
-		StringBuilder temp = new StringBuilder();
-		String delim = "[";
-
-		for(int number : practicalNumbers){
-			temp.append(delim).append(Integer.toString(number));
-			delim = ", ";
-		}
-		temp.append(']');
-		return temp.toString();
+		return practicalNumbers.toString();
 	}
 
 	boolean checkPracticalNumbers(Integer number) {
@@ -53,6 +45,4 @@ public class PracticalNumbers {
 		}
 		return true;
 	}
-
-
 }
